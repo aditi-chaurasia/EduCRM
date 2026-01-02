@@ -80,7 +80,7 @@ public class AuthService {
             admin.setName("Super Admin");
             admin.setEmail(adminEmail);
             admin.setPassword(passwordEncoder.encode("admin123"));
-            admin.setRole(Role.ADMIN);
+            admin.setRole(Role.SUPER_ADMIN);
      
             userRepository.save(admin);
      

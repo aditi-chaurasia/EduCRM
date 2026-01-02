@@ -29,7 +29,7 @@ private Role role;
 
 public enum Role
 {
-	USER,ADMIN,TRAINER
+	SUPER_ADMIN,USER,ADMIN,TRAINER
 }
 }
 

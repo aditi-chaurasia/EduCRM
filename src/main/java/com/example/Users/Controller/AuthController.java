@@ -33,16 +33,26 @@ public class AuthController {
         return ResponseEntity.ok(authService.register(request));
     }
 
+ // Only SUPER_ADMIN can create ADMIN
 @PostMapping("/register-admin")
-@PreAuthorize("hasRole('ADMIN')")
-public ResponseEntity<ResponseDTO> registerAdmin(@Valid @RequestBody RequestDTO request) {
+@PreAuthorize("hasRole('SUPER_ADMIN')")
+public ResponseEntity<ResponseDTO> registerAdmin
+(@Valid @RequestBody RequestDTO request) {
     return ResponseEntity.ok(authService.registerAdmin(request));
 }
 
+// Only ADMIN can create TRAINER
 @PostMapping("/register-trainer")
-@PreAuthorize("hasRole('TRAINER')")
+@PreAuthorize("hasRole('ADMIN')")
 public ResponseEntity<ResponseDTO> registerTrainer(@Valid @RequestBody RequestDTO request) {
     return ResponseEntity.ok(authService.registerTrainer(request));
 }
+
+//Only ADMIN can create USER (managed creation; optional if you want admins to create users)
+ @PostMapping("/register-user")
+ @PreAuthorize("hasRole('ADMIN')")
+ public ResponseEntity<ResponseDTO> registerUser(@Valid @RequestBody RequestDTO request) {
+     return ResponseEntity.ok(authService.register(request));
+ }
 
 }
